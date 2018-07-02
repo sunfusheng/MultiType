@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#C34A42</color>
+    <color name="colorPrimaryDark">#C34A42</color>
+    <color name="colorAccent">#C34A42</color>
+
+    <!-- common -->
+    <color name="c0">#ff000000</color>
+    <color name="c1">#D9000000</color>
+    <color name="c2">#8C000000</color>
+    <color name="c3">#66000000</color>
+    <color name="c4">#1A000000</color>
+    <color name="c5">#C34A42</color>
+    <color name="c6">#FF9800</color>
+    <color name="c7">#009734</color>
+    <color name="c8">#46AE36</color>
+    <color name="c9">#47B000</color>
+    <color name="c10">#007AFF</color>
+    <color name="c11">#1194F6</color>
+    <color name="c12">#9D1BB2</color>
+
+    <color name="font1">#373a41</color>
+    <color name="font2">#9d9d9d</color>
+    <color name="font3">#d6d6d6</color>
+
+    <color name="divider1">@color/background_common</color>
+    <color name="divider2">@color/background_common_dark</color>
+
+    <color name="background_common">#ebebeb</color>
+    <color name="background_common_dark">#d6d6d6</color>
+
+    <color name="placeholder">#d6d6d6</color>
+
+    <color name="tab_normal">#9d9d9d</color>
+    <color name="tab_selected">#1AAD19</color>
+
+    <color name="grey1">#9e9e9e</color>
+    <color name="grey2">#bdbdbd</color>
+    <color name="grey3">#e0e0e0</color>
+
+    <color name="color1">#212121</color>
+    <color name="color2">#333333</color>
+    <color name="color3">#666666</color>
+    <color name="color4">#999999</color>
+    <color name="color5">#BBBBBB</color>
+    <color name="color6">#EEEEEE</color>
+    <color name="color7">#F5F5F5</color>
+    <color name="color8">#FAFAFA</color>
+
+    <!-- standard -->
+    <color name="white">#FFFFFF</color>  <!-- 白色 -->
+    <color name="yellow">#FFFF00</color> <!-- 黄色 -->
+    <color name="gold">#FFD700</color>   <!-- 金色 -->
+    <color name="orange">#FFA500</color> <!-- 橙色 -->
+    <color name="red">#FF0000</color>    <!-- 红色 -->
+    <color name="gray">#808080</color>   <!-- 灰色 -->
+    <color name="green">#1AAD19</color>  <!-- 绿色 -->
+    <color name="blue">#0000FF</color>   <!-- 蓝色 -->
+    <color name="black">#000000</color>  <!-- 黑色 -->
+
+    <color name="transparent">#00000000</color>
+    <color name="transparent05">#0B000000</color>
+    <color name="transparent10">#1A000000</color>
+    <color name="transparent20">#33000000</color>
+    <color name="transparent30">#4D000000</color>
+    <color name="transparent40">#66000000</color>
+    <color name="transparent50">#80000000</color>
+    <color name="transparent60">#9A000000</color>
+    <color name="transparent70">#B3000000</color>
+    <color name="transparent80">#CC000000</color>
+    <color name="transparent90">#E5000000</color>
+    <color name="transparent100">#FF000000</color>
+
+    <color name="transparent_white">#00ffffff</color>
+    <color name="transparent10_white">#1Affffff</color>
+    <color name="transparent20_white">#33ffffff</color>
+    <color name="transparent30_white">#4Dffffff</color>
+    <color name="transparent40_white">#66ffffff</color>
+    <color name="transparent50_white">#80ffffff</color>
+    <color name="transparent60_white">#9Affffff</color>
+    <color name="transparent70_white">#B3ffffff</color>
+    <color name="transparent80_white">#CCffffff</color>
+    <color name="transparent90_white">#E5ffffff</color>
+    <color name="transparent100_white">#FFffffff</color>
+
+    <color name="config_color_green">#FF1AAD19</color>
+    <color name="config_color_green_50">#801AAD19</color>
+
+    <color name="config_color_blue">#FF1B88EE</color>
+    <color name="config_color_blue_50">#801B88EE</color>
+
+    <color name="config_color_red">#FA3A3A</color>
+    <color name="config_color_separator">#DEE0E2</color>
+    <color name="config_color_separator_darken">#D4D6D8</color>
+    <color name="config_color_background">#F4F5F7</color>
+    <color name="config_color_background_pressed">#EEEFF1</color>
+    <color name="config_color_black">#212832</color>
+    <color name="config_color_link">#547FB0</color>
+    <color name="config_color_pressed">#EEEEF0</color>
+
+    <color name="config_color_gray_1">#353C46</color>
+    <color name="config_color_gray_2">#49505A</color>
+    <color name="config_color_gray_3">#5D646E</color>
+    <color name="config_color_gray_4">#717882</color>
+    <color name="config_color_gray_5">#858C96</color>
+    <color name="config_color_gray_6">#99A0AA</color>
+    <color name="config_color_gray_7">#ADB4BE</color>
+    <color name="config_color_gray_8">#C4C8D0</color>
+    <color name="config_color_gray_9">#D8DCE4</color>
+
+    <color name="google_red">#EA4335</color>
+    <color name="google_yellow">#FBBC05</color>
+    <color name="google_blue">#4285F4</color>
+    <color name="google_green">#34A853</color>
+
+    <integer-array name="google_glyphs_colors">
+        <item>@color/google_red</item>
+        <item>@color/google_yellow</item>
+        <item>@color/google_blue</item>
+        <item>@color/google_green</item>
+    </integer-array>
+
+</resources>

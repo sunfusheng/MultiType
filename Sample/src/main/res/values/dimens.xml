@@ -1,0 +1,56 @@
+<resources>
+
+    <dimen name="item_margin_large">16dp</dimen>
+    <dimen name="item_margin">14dp</dimen>
+    <dimen name="item_margin_small">12dp</dimen>
+    <dimen name="item_margin_smaller">10dp</dimen>
+    <dimen name="item_margin_smallest">8dp</dimen>
+
+    <dimen name="titlebar_view_height">48dp</dimen>
+    <dimen name="statusbar_view_height">0dp</dimen>
+
+    <dimen name="text_size_l_large">25sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_normal">15sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_x_small">12sp</dimen>
+    <dimen name="text_size_xx_small">11sp</dimen>
+    <dimen name="text_size_xxx_small">10sp</dimen>
+    <dimen name="text_size_xxxx_small">9sp</dimen>
+    <dimen name="text_size_xxxxx_small">8sp</dimen>
+
+    <dimen name="tab_text_size">@dimen/text_size_x_small</dimen>
+
+    <dimen name="user_profile_height">220dp</dimen>
+
+
+    <!-- 字体 -->
+    <dimen name="f1">28sp</dimen>
+    <dimen name="f2">26sp</dimen>
+    <dimen name="f3">24sp</dimen>
+    <dimen name="f4">20sp</dimen>
+    <dimen name="f5">17sp</dimen>
+    <dimen name="f6">16sp</dimen>
+    <dimen name="f7">14sp</dimen>
+    <dimen name="f8">12sp</dimen>
+    <dimen name="f9">10sp</dimen>
+    <dimen name="f10">8sp</dimen>
+
+    <!-- 间距 -->
+    <dimen name="d0">1dp</dimen>
+    <dimen name="d1">2dp</dimen>
+    <dimen name="d2">4dp</dimen>
+    <dimen name="d3">8dp</dimen>
+    <dimen name="d4">12dp</dimen>
+    <dimen name="d5">16dp</dimen>
+    <dimen name="d6">24dp</dimen>
+
+    <!-- 宽高 -->
+    <dimen name="t1">73dp</dimen>
+    <dimen name="t2">36dp</dimen>
+    <dimen name="t3">28dp</dimen>
+    <dimen name="t4">22dp</dimen>
+    <dimen name="t5">15dp</dimen>
+
+</resources>
