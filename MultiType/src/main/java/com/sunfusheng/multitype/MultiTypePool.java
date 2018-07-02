@@ -40,22 +40,13 @@ public class MultiTypePool {
     @NonNull
     public ItemViewBinder<?, ?> getViewBinder(@NonNull Object model) {
         MultiType multiType = typeMap.get(model.getClass());
-        if (multiType == null && defaultBinder != null) {
-            return defaultBinder;
-        }
         if (multiType == null) {
+            if (defaultBinder != null) {
+                return defaultBinder;
+            }
             return typeMap.get(DefaultBinderClass.class).getViewBinder(model);
         }
         return multiType.getViewBinder(model);
-    }
-
-    @NonNull
-    public <T> ItemViewBinder<?, ?> getViewBinderByViewType(int viewType, @NonNull Class<? extends T> clazz) {
-        MultiType multiType = typeMap.get(clazz);
-        if (multiType == null) {
-            throw new BinderNotFoundException(clazz);
-        }
-        return multiType.getViewBinderByHashCode(viewType, clazz);
     }
 
     @NonNull
