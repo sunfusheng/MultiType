@@ -21,20 +21,12 @@ import com.sunfusheng.multitype.sample.viewbinder.VideoBinder;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private MultiTypeAdapter multiTypeAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initView();
         initMultiType();
-    }
-
-    private void initView() {
-        recyclerView = findViewById(R.id.recyclerView);
     }
 
     private void initMultiType() {
@@ -45,11 +37,8 @@ public class MainActivity extends AppCompatActivity {
         MultiTypeRegistry.getInstance().register(News.class, News::getType, News.TYPE_THREE_IMAGES, new ThreeImagesBinder());
         MultiTypeRegistry.getInstance().registerDefaultBinder(new NonsupportBinder());
 
-        multiTypeAdapter = new MultiTypeAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(multiTypeAdapter);
-
-        // 局部注册，注意局部会覆盖全局
+        // 局部注册，局部注册会覆盖全局的
+        MultiTypeAdapter multiTypeAdapter = new MultiTypeAdapter();
 //        multiTypeAdapter.register(News.class, News::getType, News.TYPE_TEXT, new TextBinder());
 //        multiTypeAdapter.register(News.class, News::getType, News.TYPE_BIG_IMAGE, new BigImageBinder());
 //        multiTypeAdapter.register(News.class, News::getType, News.TYPE_RIGHT_IMAGE, new BigImageBinder());
@@ -57,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
         multiTypeAdapter.register(Music.class, new MusicBinder());
         multiTypeAdapter.register(Video.class, new VideoBinder());
 
+        // 初始化
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(multiTypeAdapter);
+
+        // 设置数据
         multiTypeAdapter.setItems(ModelUtils.getData());
         multiTypeAdapter.notifyDataSetChanged();
     }
