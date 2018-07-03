@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         MultiTypeRegistry.getInstance().register(News.class, News::getType, News.TYPE_BIG_IMAGE, new BigImageBinder());
         MultiTypeRegistry.getInstance().register(News.class, News::getType, News.TYPE_RIGHT_IMAGE, new RightImageBinder());
         MultiTypeRegistry.getInstance().register(News.class, News::getType, News.TYPE_THREE_IMAGES, new ThreeImagesBinder());
+
+        // 注册默认或不支持类型
         MultiTypeRegistry.getInstance().registerDefaultBinder(new NonsupportBinder());
 
         // 局部注册，局部注册会覆盖全局的
