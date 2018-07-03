@@ -28,7 +28,7 @@ MultiTypeRegistry.getInstance().register(Video.class, new VideoBinder());
 // 注册默认或不支持类型
 MultiTypeRegistry.getInstance().registerDefaultBinder(new NonsupportBinder());
 
-// 局部注册
+// 局部注册，局部注册会覆盖全局的
 MultiTypeAdapter multiTypeAdapter = new MultiTypeAdapter();
 multiTypeAdapter.register(News.class, News::getType, News.TYPE_TEXT, new TextBinder());
 multiTypeAdapter.register(News.class, News::getType, News.TYPE_BIG_IMAGE, new BigImageBinder());
