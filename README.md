@@ -1,6 +1,6 @@
 # MultiType
 
-为实现RecyclerView显示多种类型数据，包括各种Headers、Footers，参考[drakeet](https://github.com/drakeet)的抗鼎之作[MultiType](https://github.com/drakeet/MultiType)后，
+为实现RecyclerView显示多种类型数据，包括各种Headers、Footers，参考[drakeet](https://github.com/drakeet)的扛鼎之作[MultiType](https://github.com/drakeet/MultiType)后，
 着重优化了一对多的显示，即一种数据类型对应多种布局的情况，例如新闻数据类型（News.class）就可能显示
 文本、左图、右图、大图、多图等多种item布局，面对这种情况就要根据数据中的类型字段（你指定属性的get()方法）去区分，
 这个库是通过Java8的新特性传递方法的引用来解决这个问题的。
