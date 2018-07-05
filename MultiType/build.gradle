@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -31,4 +32,13 @@ android {
 dependencies {
     api "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
     api "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+}
+
+publish {
+    userOrg = 'sfsheng0322'
+    groupId = 'com.sunfusheng'
+    artifactId = 'MultiType'
+    publishVersion = rootProject.versionName
+    desc = 'MultiType is a library which simply and easily realize RecyclerView display multiple types of data, one-to-many, many-to-many, can register global type, local type, default type.'
+    website = 'https://github.com/sfsheng0322/MultiType'
 }
