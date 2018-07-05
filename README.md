@@ -1,4 +1,4 @@
-# MultiType
+# MultiType [ ![Download](https://api.bintray.com/packages/sfsheng0322/maven/MultiType/images/download.svg) ](https://bintray.com/sfsheng0322/maven/MultiType/_latestVersion)
 
 为实现RecyclerView显示多种类型数据，包括各种Headers、Footers，参考[drakeet](https://github.com/drakeet)的扛鼎之作[MultiType](https://github.com/drakeet/MultiType)后，
 着重优化了一对多的显示，即一种数据类型对应多种布局的情况，例如新闻数据类型（News.class）就可能显示
@@ -14,7 +14,9 @@
 
 <img src="/resources/res1.png">
 
-### 多类型列表使用
+### MultiType使用
+
+compile 'com.sunfusheng:MultiType:<latest-version>'
 
 ```java
 // 全局注册
