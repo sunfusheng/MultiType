@@ -10,17 +10,17 @@
 通过[MultiTypeAdapter](https://github.com/sfsheng0322/MultiType/blob/master/MultiType/src/main/java/com/sunfusheng/multitype/MultiTypeAdapter.java)局部注册过你的数据类型，
 这个库不会让应用崩掉，会返回默认的提示layout，当然你也可以注册自己的默认数据类型，具体使用参考下面。
 
-### Sample预览图
+## Sample预览图
 
 <img src="/resources/res1.png">
 
-### MultiType的使用
+## MultiType的使用
 
-#### Gradle:
+#### Gradle
 
 compile 'com.sunfusheng:MultiType:<latest-version>'
 
-#### 全局注册:
+#### 全局注册
 
 ```java
 MultiTypeRegistry.getInstance().register(News.class, News::getType, News.TYPE_TEXT, new TextBinder());
@@ -31,13 +31,13 @@ MultiTypeRegistry.getInstance().register(Music.class, new MusicBinder());
 MultiTypeRegistry.getInstance().register(Video.class, new VideoBinder());
 ```
 
-#### 注册默认或不支持类型：
+#### 注册默认或不支持类型
 
 ```java
 MultiTypeRegistry.getInstance().registerDefaultBinder(new NonsupportBinder());
 ```
 
-#### 局部注册，局部注册会覆盖全局的：
+#### 局部注册，局部注册会覆盖全局的
 
 ```java
 MultiTypeAdapter multiTypeAdapter = new MultiTypeAdapter();
@@ -49,7 +49,7 @@ multiTypeAdapter.register(Music.class, new MusicBinder());
 multiTypeAdapter.register(Video.class, new VideoBinder());
 ```
 
-#### 初始化，设置数据：
+#### 初始化，设置数据
 
 ```java
 RecyclerView recyclerView = findViewById(R.id.recyclerView);
