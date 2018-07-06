@@ -18,7 +18,7 @@
 
 #### Gradle
 
-compile 'com.sunfusheng:MultiType:<latest-version>'
+    compile 'com.sunfusheng:MultiType:<latest-version>'
 
 #### 全局注册
 
