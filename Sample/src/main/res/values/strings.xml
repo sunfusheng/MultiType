@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MultiType</string>
+    <string name="app_name_with_version">MultiType V%s</string>
 </resources>
