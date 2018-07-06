@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.sunfusheng.FirUpdater;
 import com.sunfusheng.multitype.MultiTypeAdapter;
 import com.sunfusheng.multitype.MultiTypeRegistry;
 import com.sunfusheng.multitype.sample.model.ModelUtils;
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new FirUpdater(this)
+                .apiToken("3c57fb226edf7facf821501e4eba08d2")
+                .appId("5b3ec988548b7a3d7bd77c8f")
+                .checkVersion();
 
         initMultiType();
     }

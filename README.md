@@ -14,23 +14,32 @@
 
 <img src="/resources/res1.png">
 
-### MultiType使用
+### MultiType的使用
+
+#### Gradle:
 
 compile 'com.sunfusheng:MultiType:<latest-version>'
 
+#### 全局注册:
+
 ```java
-// 全局注册
 MultiTypeRegistry.getInstance().register(News.class, News::getType, News.TYPE_TEXT, new TextBinder());
 MultiTypeRegistry.getInstance().register(News.class, News::getType, News.TYPE_BIG_IMAGE, new BigImageBinder());
 MultiTypeRegistry.getInstance().register(News.class, News::getType, News.TYPE_RIGHT_IMAGE, new RightImageBinder());
 MultiTypeRegistry.getInstance().register(News.class, News::getType, News.TYPE_THREE_IMAGES, new ThreeImagesBinder());
 MultiTypeRegistry.getInstance().register(Music.class, new MusicBinder());
 MultiTypeRegistry.getInstance().register(Video.class, new VideoBinder());
+```
 
-// 注册默认或不支持类型
+#### 注册默认或不支持类型：
+
+```java
 MultiTypeRegistry.getInstance().registerDefaultBinder(new NonsupportBinder());
+```
 
-// 局部注册，局部注册会覆盖全局的
+#### 局部注册，局部注册会覆盖全局的：
+
+```java
 MultiTypeAdapter multiTypeAdapter = new MultiTypeAdapter();
 multiTypeAdapter.register(News.class, News::getType, News.TYPE_TEXT, new TextBinder());
 multiTypeAdapter.register(News.class, News::getType, News.TYPE_BIG_IMAGE, new BigImageBinder());
@@ -38,16 +47,21 @@ multiTypeAdapter.register(News.class, News::getType, News.TYPE_RIGHT_IMAGE, new 
 multiTypeAdapter.register(News.class, News::getType, News.TYPE_THREE_IMAGES, new ThreeImagesBinder());
 multiTypeAdapter.register(Music.class, new MusicBinder());
 multiTypeAdapter.register(Video.class, new VideoBinder());
+```
 
-// 初始化
+#### 初始化，设置数据：
+
+```java
 RecyclerView recyclerView = findViewById(R.id.recyclerView);
 recyclerView.setLayoutManager(new LinearLayoutManager(this));
 recyclerView.setAdapter(multiTypeAdapter);
 
-// 设置数据
 multiTypeAdapter.setItems(@NonNull List<?> items);
 multiTypeAdapter.notifyDataSetChanged();
 ```
+### [APK下载地址](https://fir.im/MultiType)，去手机上体验吧 (◐‿◑)
+
+<img src="/resources/fir.png">
 
 ### 个人微信公众号
 
