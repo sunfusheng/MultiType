@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="loadingLayout" format="integer"/>
+    <attr name="normalLayout" format="integer"/>
+    <attr name="errorLayout" format="integer"/>
+    <attr name="emptyLayout" format="integer"/>
+
+    <attr name="loadingState" format="enum">
+        <enum name="loading" value="0"/>
+        <enum name="normal" value="1"/>
+        <enum name="error" value="2"/>
+        <enum name="empty" value="3"/>
+    </attr>
+
+    <declare-styleable name="MultiStateView">
+        <attr name="loadingLayout"/>
+        <attr name="normalLayout"/>
+        <attr name="errorLayout"/>
+        <attr name="emptyLayout"/>
+        <attr name="loadingState"/>
+    </declare-styleable>
+
+</resources>

@@ -1,1 +1,1 @@
-include ':Sample', ':MultiType'
+include ':Sample', ':MultiType', ':MultiState'
