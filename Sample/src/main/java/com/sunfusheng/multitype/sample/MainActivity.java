@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.sunfusheng.FirUpdater;
 import com.sunfusheng.FirUpdaterUtils;
@@ -85,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initMultiState() {
-        multiStateView.getErrorView().setOnClickListener(v -> setData());
+        View errorView = multiStateView.getErrorView();
+        View vRetry = errorView.findViewById(R.id.retry);
+        vRetry.setOnClickListener(v -> setData());
 
         multiStateView.setLoadingState(LoadingState.LOADING);
         mainHandler.postDelayed(() -> {
