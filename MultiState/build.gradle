@@ -38,6 +38,6 @@ publish {
     groupId = 'com.sunfusheng'
     artifactId = 'MultiState'
     publishVersion = rootProject.versionName
-    desc = 'MultiState is a library.'
+    desc = 'MultiState is a library which centralizes the state of loading, successful loading, failed loading, and empty data'
     website = 'https://github.com/sfsheng0322/MultiType'
 }
