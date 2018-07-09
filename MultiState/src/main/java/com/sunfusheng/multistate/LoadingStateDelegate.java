@@ -3,7 +3,7 @@ package com.sunfusheng.multistate;
 import android.view.View;
 
 /**
- * @author by sunfusheng on 2018/4/19.
+ * @author by sunfusheng on 2018/7/6.
  */
 public class LoadingStateDelegate {
 

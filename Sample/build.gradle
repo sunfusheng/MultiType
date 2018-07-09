@@ -71,4 +71,5 @@ dependencies {
     implementation 'com.sunfusheng:FirUpdater:1.0.8'
     implementation 'com.sunfusheng:GlideImageView:2.0.0'
     implementation project(':MultiType')
+    implementation project(':MultiState')
 }

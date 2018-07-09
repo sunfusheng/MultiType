@@ -6,7 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * @author sunfusheng on 2018/4/13.
+ * @author sunfusheng on 2018/7/6.
  */
 @IntDef({LoadingState.LOADING, LoadingState.SUCCESS, LoadingState.ERROR, LoadingState.EMPTY})
 @Retention(RetentionPolicy.SOURCE)

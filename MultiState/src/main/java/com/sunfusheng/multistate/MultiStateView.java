@@ -11,7 +11,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 
 /**
@@ -121,12 +120,10 @@ public class MultiStateView extends FrameLayout {
     }
 
     public View setContentView(@LayoutRes int layoutResID) {
-        if (layoutResID > -1) {
-            normalView = inflater.inflate(layoutResID, this, false);
-            addView(normalView);
-            setNormalView(normalView);
-            setLoadingState(loadingState);
-        }
+        normalView = inflater.inflate(layoutResID, this, false);
+        addView(normalView);
+        setNormalView(normalView);
+        setLoadingState(loadingState);
         return normalView;
     }
 
@@ -146,37 +143,9 @@ public class MultiStateView extends FrameLayout {
         delegate.setEmptyView(emptyView);
     }
 
-    public void setLoadingTip(String tip) {
-        TextView textView = loadingView.findViewById(R.id.loading_tip);
-        if (textView != null) {
-            textView.setText(tip);
-        }
-    }
-
-    public void setErrorTip(String tip) {
-        TextView textView = errorView.findViewById(R.id.error_tip);
-        if (textView != null) {
-            textView.setText(tip);
-        }
-    }
-
-    public void setEmptyTip(String tip) {
-        TextView textView = emptyView.findViewById(R.id.empty_tip);
-        if (textView != null) {
-            textView.setText(tip);
-        }
-    }
-
     public void setErrorViewListener(OnClickListener listener) {
         if (errorView != null) {
             errorView.setOnClickListener(listener);
-        }
-    }
-
-    public void setErrorButtonListener(OnClickListener listener) {
-        View view = errorView.findViewById(R.id.error_button);
-        if (view != null) {
-            view.setOnClickListener(listener);
         }
     }
 

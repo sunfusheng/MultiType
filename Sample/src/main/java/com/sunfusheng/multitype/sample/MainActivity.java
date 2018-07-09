@@ -1,12 +1,16 @@
 package com.sunfusheng.multitype.sample;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.sunfusheng.FirUpdater;
 import com.sunfusheng.FirUpdaterUtils;
+import com.sunfusheng.multistate.LoadingState;
+import com.sunfusheng.multistate.MultiStateView;
 import com.sunfusheng.multitype.MultiTypeAdapter;
 import com.sunfusheng.multitype.MultiTypeRegistry;
 import com.sunfusheng.multitype.sample.model.ModelUtils;
@@ -23,10 +27,15 @@ import com.sunfusheng.multitype.sample.viewbinder.VideoBinder;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final Handler mainHandler = new Handler(Looper.getMainLooper());
+
+    private MultiTypeAdapter multiTypeAdapter;
+    private MultiStateView multiStateView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.layout_recyclerview_wrapper);
         setTitle(getString(R.string.app_name_with_version, FirUpdaterUtils.getVersionName(this)));
 
         new FirUpdater(this)
@@ -34,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 .appId("5b3ec988548b7a3d7bd77c8f")
                 .checkVersion();
 
+        multiStateView = findViewById(R.id.multiStateView);
+
         initMultiType();
+        initMultiState();
     }
 
     private void initMultiType() {
@@ -48,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         MultiTypeRegistry.getInstance().registerDefaultBinder(new NonsupportBinder());
 
         // 局部注册，局部注册会覆盖全局的
-        MultiTypeAdapter multiTypeAdapter = new MultiTypeAdapter();
+        multiTypeAdapter = new MultiTypeAdapter();
 //        multiTypeAdapter.register(News.class, News::getType, News.TYPE_TEXT, new TextBinder());
 //        multiTypeAdapter.register(News.class, News::getType, News.TYPE_BIG_IMAGE, new BigImageBinder());
 //        multiTypeAdapter.register(News.class, News::getType, News.TYPE_RIGHT_IMAGE, new BigImageBinder());
@@ -60,9 +72,25 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(multiTypeAdapter);
-
-        // 设置数据
-        multiTypeAdapter.setItems(ModelUtils.getData());
-        multiTypeAdapter.notifyDataSetChanged();
     }
+
+    // 设置数据
+    private void setData() {
+        multiStateView.setLoadingState(LoadingState.LOADING);
+        mainHandler.postDelayed(() -> {
+            multiStateView.setLoadingState(LoadingState.SUCCESS);
+            multiTypeAdapter.setItems(ModelUtils.getData());
+            multiTypeAdapter.notifyDataSetChanged();
+        }, 1500);
+    }
+
+    private void initMultiState() {
+        multiStateView.getErrorView().setOnClickListener(v -> setData());
+
+        multiStateView.setLoadingState(LoadingState.LOADING);
+        mainHandler.postDelayed(() -> {
+            multiStateView.setLoadingState(LoadingState.ERROR);
+        }, 1500);
+    }
+
 }
