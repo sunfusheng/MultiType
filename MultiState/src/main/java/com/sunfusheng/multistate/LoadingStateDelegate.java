@@ -6,7 +6,6 @@ import android.view.View;
  * @author by sunfusheng on 2018/7/6.
  */
 public class LoadingStateDelegate {
-
     private View views[] = new View[4];
 
     public LoadingStateDelegate(View loadingView, View successView, View errorView, View emptyView) {

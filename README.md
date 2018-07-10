@@ -3,12 +3,16 @@
 为实现RecyclerView显示多种类型数据，包括各种Headers、Footers，参考[drakeet](https://github.com/drakeet)的扛鼎之作[MultiType](https://github.com/drakeet/MultiType)后，
 着重优化了一对多的显示，即一种数据类型对应多种布局的情况，例如新闻数据类型（News.class）就可能显示
 文本、左图、右图、大图、多图等多种item布局，面对这种情况就要根据数据中的类型字段（你指定属性的get()方法）去区分，
-这个库是通过Java8的新特性传递方法的引用来解决这个问题的。
+这里通过Java8的特性传递方法的引用，再通过KeyGenerator执行这个方法获取数据对应的值来解决这个问题的。
 
 该库不仅可以显示同一种数据类型对应不同的layout，还可以显示不同数据类型对应不同的layout，如果你没有
 通过[MultiTypeRegistry](https://github.com/sfsheng0322/MultiType/blob/master/MultiType/src/main/java/com/sunfusheng/multitype/MultiTypeRegistry.java)全局注册或
 通过[MultiTypeAdapter](https://github.com/sfsheng0322/MultiType/blob/master/MultiType/src/main/java/com/sunfusheng/multitype/MultiTypeAdapter.java)局部注册过你的数据类型，
 这个库不会让应用崩掉，会返回默认的提示layout，当然你也可以注册自己的默认数据类型，具体使用参考下面。
+
+# MultiState
+
+MultiState 这个库为了管理请求数据的加载中、加载成功、加载失败、数据为空的情况，与MultiType配合使用更合适。
 
 ## Sample预览图
 
@@ -18,7 +22,11 @@
 
 #### Gradle
 
+    // MultiType
     compile 'com.sunfusheng:MultiType:<latest-version>'
+    
+    // MultiState
+    compile 'com.sunfusheng:MultiState:<latest-version>'
 
 #### 全局注册
 
@@ -59,6 +67,38 @@ recyclerView.setAdapter(multiTypeAdapter);
 multiTypeAdapter.setItems(@NonNull List<?> items);
 multiTypeAdapter.notifyDataSetChanged();
 ```
+
+## MultiState的使用
+
+#### 属性字段
+
+| 属性 | 作用 | 
+| :------ | :------ | 
+| loadingLayout | 加载中布局 | 
+| normalLayout | 正常显示数据的布局 | 
+| errorLayout | 加载失败布局 |
+| emptyLayout | 数据为空布局 |
+| loadingState | 初始的加载状态 |
+
+#### xml配置
+
+```xml
+<com.sunfusheng.multistate.MultiStateView
+    android:id="@+id/multiStateView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:errorLayout="@layout/layout_recyclerview_error"
+    app:loadingState="loading"
+    app:normalLayout="@layout/layout_recyclerview"/>
+```
+
+#### 代码设置
+
+    // 设置加载状态
+    multiStateView.setLoadingState(@LoadingState int loadingState);
+    
 ### [APK下载地址](https://fir.im/MultiType)，去手机上体验吧 (◐‿◑)
 
 <img src="/resources/fir.png">

@@ -17,7 +17,6 @@ import android.widget.FrameLayout;
  * @author sunfusheng on 2018/7/6.
  */
 public class MultiStateView extends FrameLayout {
-
     private View loadingView;
     private View normalView;
     private View errorView;
