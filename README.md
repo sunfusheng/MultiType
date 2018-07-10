@@ -18,15 +18,15 @@ MultiState 这个库为了管理请求数据的加载中、加载成功、加载
 
 <img src="/resources/res1.png">
 
-## MultiType的使用
-
-#### Gradle
+#### Gradle配置
 
     // MultiType
     compile 'com.sunfusheng:MultiType:<latest-version>'
     
     // MultiState
     compile 'com.sunfusheng:MultiState:<latest-version>'
+
+## MultiType的使用
 
 #### 全局注册
 
