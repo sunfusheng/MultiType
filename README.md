@@ -70,8 +70,6 @@ multiTypeAdapter.notifyDataSetChanged();
 
 ## MultiState的使用
 
-#### 属性字段
-
 | 属性 | 作用 | 
 | :------ | :------ | 
 | loadingLayout | 加载中布局 | 
@@ -89,17 +87,18 @@ multiTypeAdapter.notifyDataSetChanged();
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:errorLayout="@layout/layout_recyclerview_error"
-    app:loadingState="loading"
-    app:normalLayout="@layout/layout_recyclerview"/>
+    app:loadingLayout="@layout/layout_loading"
+    app:normalLayout="@layout/layout_recyclerview"
+    app:errorLayout="@layout/layout_error"
+    app:emptyLayout="@layout/layout_empty"
+    app:loadingState="loading"/>
 ```
 
-#### 代码设置
+#### 设置加载状态
 
-    // 设置加载状态
     multiStateView.setLoadingState(@LoadingState int loadingState);
     
-### [APK下载地址](https://fir.im/MultiType)，去手机上体验吧 (◐‿◑)
+### [APK下载地址](https://fir.im/MultiType)，去手机上体验吧^_^
 
 <img src="/resources/fir.png">
 
@@ -107,7 +106,7 @@ multiTypeAdapter.notifyDataSetChanged();
 
 <img src="http://ourvm0t8d.bkt.clouddn.com/wx_gongzhonghao.png">
 
-### 打点赏给作者加点油^_^
+### 打赏才是真爱^_^
 
 <img src="http://ourvm0t8d.bkt.clouddn.com/wx_shoukuanma.png" >
 
