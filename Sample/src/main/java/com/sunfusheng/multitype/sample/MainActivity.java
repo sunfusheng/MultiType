@@ -28,7 +28,6 @@ import com.sunfusheng.multitype.sample.viewbinder.ThreeImagesBinder;
 import com.sunfusheng.multitype.sample.viewbinder.VideoBinder;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final Handler mainHandler = new Handler(Looper.getMainLooper());
 
     private MultiTypeAdapter multiTypeAdapter;
@@ -71,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
         multiTypeAdapter.register(Video.class, new VideoBinder());
 
         multiTypeAdapter.setOnItemClickListener(item -> {
-            Toast.makeText(this, "OnItemClick: " + item.getClass().getCanonicalName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "OnItemClick: " + item.getClass().getSimpleName() + ".class", Toast.LENGTH_SHORT).show();
         });
 
         multiTypeAdapter.setOnItemLongClickListener(item -> {
-            Toast.makeText(this, "OnItemLongClick: " + item.getClass().getCanonicalName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "OnItemLongClick: " + item.getClass().getSimpleName() + ".class", Toast.LENGTH_SHORT).show();
             return true;
         });
 
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             multiStateView.setLoadingState(LoadingState.SUCCESS);
             multiTypeAdapter.setItems(ModelUtils.getData());
             multiTypeAdapter.notifyDataSetChanged();
-        }, 1500);
+        }, 1000);
     }
 
     private void initMultiState() {
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         multiStateView.setLoadingState(LoadingState.LOADING);
         mainHandler.postDelayed(() -> {
             multiStateView.setLoadingState(LoadingState.ERROR);
-        }, 1500);
+        }, 1000);
     }
 
 }

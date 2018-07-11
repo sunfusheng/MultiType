@@ -21,10 +21,15 @@ MultiState 这个库为了管理请求数据的加载中、加载成功、加载
 #### Gradle配置
 
     // MultiType
-    compile 'com.sunfusheng:MultiType:<latest-version>'
+    api 'com.sunfusheng:MultiType:<latest-version>'
+    
+    // 如果不想用库里版本的RecyclerView，可这样配置
+    api 'com.sunfusheng:MultiType:<latest-version>', {
+        exclude group: 'com.android.support'
+    }
     
     // MultiState
-    compile 'com.sunfusheng:MultiState:<latest-version>'
+    api 'com.sunfusheng:MultiState:<latest-version>'
 
 ## MultiType的使用
 
