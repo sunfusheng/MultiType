@@ -10,7 +10,7 @@
 通过[MultiTypeAdapter](https://github.com/sfsheng0322/MultiType/blob/master/MultiType/src/main/java/com/sunfusheng/multitype/MultiTypeAdapter.java)局部注册过你的数据类型，
 这个库不会让应用崩掉，会返回默认的提示layout，当然你也可以注册自己的默认数据类型，具体使用参考下面。
 
-# MultiState
+# MultiState [ ![Download](https://api.bintray.com/packages/sfsheng0322/maven/MultiState/images/download.svg) ](https://bintray.com/sfsheng0322/maven/MultiState/_latestVersion)
 
 MultiState 这个库为了管理请求数据的加载中、加载成功、加载失败、数据为空的情况，与MultiType配合使用更合适。
 
