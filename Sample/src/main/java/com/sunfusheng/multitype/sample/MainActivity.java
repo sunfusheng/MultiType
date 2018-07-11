@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.sunfusheng.FirUpdater;
 import com.sunfusheng.FirUpdaterUtils;
@@ -68,6 +69,15 @@ public class MainActivity extends AppCompatActivity {
 //        multiTypeAdapter.register(News.class, News::getType, News.TYPE_THREE_IMAGES, new BigImageBinder());
         multiTypeAdapter.register(Music.class, new MusicBinder());
         multiTypeAdapter.register(Video.class, new VideoBinder());
+
+        multiTypeAdapter.setOnItemClickListener(item -> {
+            Toast.makeText(this, "OnItemClick: " + item.getClass().getCanonicalName(), Toast.LENGTH_SHORT).show();
+        });
+
+        multiTypeAdapter.setOnItemLongClickListener(item -> {
+            Toast.makeText(this, "OnItemLongClick: " + item.getClass().getCanonicalName(), Toast.LENGTH_SHORT).show();
+            return true;
+        });
 
         // 初始化
         RecyclerView recyclerView = findViewById(R.id.recyclerView);

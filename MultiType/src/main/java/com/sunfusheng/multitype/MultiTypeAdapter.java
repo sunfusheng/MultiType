@@ -26,6 +26,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     private LayoutInflater inflater;
     private ItemViewBinder viewBinder;
 
+    private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
+
     public MultiTypeAdapter() {
         this(Collections.emptyList());
     }
@@ -88,6 +91,23 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public final void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull List<Object> payloads) {
         viewBinder.onBindViewHolder(holder, items.get(position), payloads);
+
+        if (onItemClickListener != null) {
+            holder.itemView.setOnClickListener(v -> {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(items.get(position));
+                }
+            });
+        }
+
+        if (onItemLongClickListener != null) {
+            holder.itemView.setOnLongClickListener(v -> {
+                if (onItemLongClickListener != null) {
+                    return onItemLongClickListener.onItemLongClick(items.get(position));
+                }
+                return false;
+            });
+        }
     }
 
     @Override
@@ -104,21 +124,48 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public void onViewAttachedToWindow(@NonNull ViewHolder holder) {
-        getItemViewBinderByViewHolder(holder).onViewAttachedToWindow(holder);
+        ItemViewBinder viewBinder = getItemViewBinderByViewHolder(holder);
+        if (viewBinder != null) {
+            viewBinder.onViewAttachedToWindow(holder);
+        }
     }
 
     @Override
     public void onViewDetachedFromWindow(@NonNull ViewHolder holder) {
-        getItemViewBinderByViewHolder(holder).onViewDetachedFromWindow(holder);
+        ItemViewBinder viewBinder = getItemViewBinderByViewHolder(holder);
+        if (viewBinder != null) {
+            viewBinder.onViewDetachedFromWindow(holder);
+        }
     }
 
     @Override
     public void onViewRecycled(@NonNull ViewHolder holder) {
-        getItemViewBinderByViewHolder(holder).onViewRecycled(holder);
+        ItemViewBinder viewBinder = getItemViewBinderByViewHolder(holder);
+        if (viewBinder != null) {
+            viewBinder.onViewRecycled(holder);
+        }
     }
 
-    @NonNull
     private ItemViewBinder getItemViewBinderByViewHolder(@NonNull ViewHolder holder) {
-        return typePool.getViewBinder(items.get(holder.getLayoutPosition()));
+        if (holder.getLayoutPosition() < items.size()) {
+            return typePool.getViewBinder(items.get(holder.getLayoutPosition()));
+        }
+        return null;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Object item);
+    }
+
+    public interface OnItemLongClickListener {
+        boolean onItemLongClick(Object item);
     }
 }
