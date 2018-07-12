@@ -52,7 +52,7 @@ public class RecyclerViewWrapper extends FrameLayout {
         ClassicsHeader.REFRESH_HEADER_LOADING = "正在加载...";
         ClassicsHeader.REFRESH_HEADER_RELEASE = "释放立即刷新";
         ClassicsHeader.REFRESH_HEADER_FINISH = "刷新成功";
-        ClassicsHeader.REFRESH_HEADER_FAILED = "刷新失败";
+        ClassicsHeader.REFRESH_HEADER_FAILED = "刷新失败，请重试";
 
         //Footer提示
         ClassicsFooter.REFRESH_FOOTER_PULLING = "上拉加载更多";
