@@ -1,0 +1,11 @@
+<resources>
+
+    <color name="color_text_white">#ffffff</color>
+    <color name="color_text_black">#333333</color>
+    <color name="color_text_first">#666666</color>
+    <color name="color_text_second">#999999</color>
+
+    <color name="color_blue">#FF1B88EE</color>
+    <color name="color_blue_50">#801B88EE</color>
+
+</resources>

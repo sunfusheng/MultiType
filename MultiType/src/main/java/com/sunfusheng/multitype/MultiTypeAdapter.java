@@ -42,8 +42,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
         checkNotNull(pool);
         this.items = items;
         this.typePool = pool;
-        this.typePool.setTypeMap(MultiTypeRegistry.getInstance().getTypeMap());
-        this.typePool.setDefaultBinder(MultiTypeRegistry.getInstance().getDefaultBinder());
+        register(pool);
+    }
+
+    public void register(@NonNull MultiTypePool pool) {
+        this.typePool.setTypeMap(pool.getTypeMap());
+        this.typePool.setDefaultBinder(pool.getDefaultBinder());
     }
 
     public <T, K> void register(@NonNull Class<? extends T> clazz, KeyGenerator<T, K> keyGenerator, K key, @NonNull ItemViewBinder<T, ?> binder) {
@@ -63,9 +67,16 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
         return items;
     }
 
-    public void setItems(@NonNull List<?> items) {
+    public void setItems(@NonNull List<?> items, boolean notifyDataSetChanged) {
         checkNotNull(items);
         this.items = items;
+        if (notifyDataSetChanged) {
+            notifyDataSetChanged();
+        }
+    }
+
+    public void setItems(@NonNull List<?> items) {
+        setItems(items, true);
     }
 
     @Override

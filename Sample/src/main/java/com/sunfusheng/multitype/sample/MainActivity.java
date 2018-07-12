@@ -4,15 +4,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.Toast;
 
 import com.sunfusheng.FirUpdater;
 import com.sunfusheng.FirUpdaterUtils;
-import com.sunfusheng.multistate.LoadingState;
-import com.sunfusheng.multistate.MultiStateView;
+import com.sunfusheng.RecyclerViewWrapper;
 import com.sunfusheng.multitype.MultiTypeAdapter;
 import com.sunfusheng.multitype.MultiTypeRegistry;
 import com.sunfusheng.multitype.sample.model.ModelUtils;
@@ -27,16 +23,25 @@ import com.sunfusheng.multitype.sample.viewbinder.TextBinder;
 import com.sunfusheng.multitype.sample.viewbinder.ThreeImagesBinder;
 import com.sunfusheng.multitype.sample.viewbinder.VideoBinder;
 
-public class MainActivity extends AppCompatActivity {
-    private static final Handler mainHandler = new Handler(Looper.getMainLooper());
+public class MainActivity extends AppCompatActivity implements
+        RecyclerViewWrapper.OnRefreshListener,
+        RecyclerViewWrapper.OnLoadMoreListener,
+        MultiTypeAdapter.OnItemClickListener,
+        MultiTypeAdapter.OnItemLongClickListener {
 
-    private MultiTypeAdapter multiTypeAdapter;
-    private MultiStateView multiStateView;
+    private static final Handler mainHandler = new Handler(Looper.getMainLooper());
+    private RecyclerViewWrapper recyclerViewWrapper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_recyclerview_wrapper);
+
+        init();
+        initMultiType();
+    }
+
+    private void init() {
         setTitle(getString(R.string.app_name_with_version, FirUpdaterUtils.getVersionName(this)));
 
         new FirUpdater(this)
@@ -44,10 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 .appId("5b3ec988548b7a3d7bd77c8f")
                 .checkVersion();
 
-        multiStateView = findViewById(R.id.multiStateView);
-
-        initMultiType();
-        initMultiState();
+        recyclerViewWrapper = findViewById(R.id.recyclerViewWrapper);
     }
 
     private void initMultiType() {
@@ -61,48 +63,61 @@ public class MainActivity extends AppCompatActivity {
         MultiTypeRegistry.getInstance().registerDefaultBinder(new NonsupportBinder());
 
         // 局部注册，局部注册会覆盖全局的
-        multiTypeAdapter = new MultiTypeAdapter();
-//        multiTypeAdapter.register(News.class, News::getType, News.TYPE_TEXT, new TextBinder());
-//        multiTypeAdapter.register(News.class, News::getType, News.TYPE_BIG_IMAGE, new BigImageBinder());
-//        multiTypeAdapter.register(News.class, News::getType, News.TYPE_RIGHT_IMAGE, new BigImageBinder());
-//        multiTypeAdapter.register(News.class, News::getType, News.TYPE_THREE_IMAGES, new BigImageBinder());
-        multiTypeAdapter.register(Music.class, new MusicBinder());
-        multiTypeAdapter.register(Video.class, new VideoBinder());
+//        recyclerViewWrapper.register(News.class, News::getType, News.TYPE_TEXT, new TextBinder());
+//        recyclerViewWrapper.register(News.class, News::getType, News.TYPE_BIG_IMAGE, new BigImageBinder());
+//        recyclerViewWrapper.register(News.class, News::getType, News.TYPE_RIGHT_IMAGE, new BigImageBinder());
+//        recyclerViewWrapper.register(News.class, News::getType, News.TYPE_THREE_IMAGES, new BigImageBinder());
+        recyclerViewWrapper.register(Music.class, new MusicBinder());
+        recyclerViewWrapper.register(Video.class, new VideoBinder());
 
-        multiTypeAdapter.setOnItemClickListener(item -> {
-            Toast.makeText(this, "OnItemClick: " + item.getClass().getSimpleName() + ".class", Toast.LENGTH_SHORT).show();
-        });
+        recyclerViewWrapper.setOnItemClickListener(this);
+        recyclerViewWrapper.setOnItemLongClickListener(this);
+        recyclerViewWrapper.setOnRefreshListener(this);
+        recyclerViewWrapper.setOnLoadMoreListener(this);
 
-        multiTypeAdapter.setOnItemLongClickListener(item -> {
-            Toast.makeText(this, "OnItemLongClick: " + item.getClass().getSimpleName() + ".class", Toast.LENGTH_SHORT).show();
-            return true;
-        });
-
-        // 初始化
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(multiTypeAdapter);
-    }
-
-    // 设置数据
-    private void setData() {
-        multiStateView.setLoadingState(LoadingState.LOADING);
         mainHandler.postDelayed(() -> {
-            multiStateView.setLoadingState(LoadingState.SUCCESS);
-            multiTypeAdapter.setItems(ModelUtils.getData());
-            multiTypeAdapter.notifyDataSetChanged();
+            recyclerViewWrapper.setItems(ModelUtils.getDataSource());
         }, 1000);
     }
 
-    private void initMultiState() {
-        View errorView = multiStateView.getErrorView();
-        View vRetry = errorView.findViewById(R.id.retry);
-        vRetry.setOnClickListener(v -> setData());
+    int num = 0;
+    int page = 1;
 
-        multiStateView.setLoadingState(LoadingState.LOADING);
+    @Override
+    public void onRefresh() {
         mainHandler.postDelayed(() -> {
-            multiStateView.setLoadingState(LoadingState.ERROR);
-        }, 1000);
+            num++;
+            page = 1;
+            if (num % 3 == 0) {
+                recyclerViewWrapper.setRefreshError();
+            } else {
+                recyclerViewWrapper.setItems(ModelUtils.getTestDataSource(page));
+            }
+        }, 1500);
     }
 
+    @Override
+    public void onLoadMore() {
+        mainHandler.postDelayed(() -> {
+            page++;
+            if (page == 4) {
+                recyclerViewWrapper.setLoadMoreError();
+            } else if (page == 6) {
+                recyclerViewWrapper.setLoadMoreEmpty();
+            } else {
+                recyclerViewWrapper.setItems(ModelUtils.getTestDataSource(page));
+            }
+        }, 1500);
+    }
+
+    @Override
+    public void onItemClick(Object item) {
+        Toast.makeText(this, "OnItemClick: " + item.getClass().getSimpleName() + ".class", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onItemLongClick(Object item) {
+        Toast.makeText(this, "OnItemLongClick: " + item.getClass().getSimpleName() + ".class", Toast.LENGTH_SHORT).show();
+        return true;
+    }
 }

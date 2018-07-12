@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MultiState" />
             <option value="$PROJECT_DIR$/MultiType" />
+            <option value="$PROJECT_DIR$/RecyclerViewWrapper" />
             <option value="$PROJECT_DIR$/Sample" />
           </set>
         </option>

@@ -73,11 +73,7 @@ public class MultiStateView extends FrameLayout {
     }
 
     public void setLoadingState(@LoadingState int loadingState) {
-        this.loadingState = loadingState;
-        delegate.setLoadingState(loadingState);
-        if (onStateChangedListener != null) {
-            onStateChangedListener.onStateChanged(loadingState);
-        }
+        setLoadingState(loadingState, null);
     }
 
     public void setLoadingState(@LoadingState int loadingState, Runnable onSuccess) {
@@ -93,7 +89,11 @@ public class MultiStateView extends FrameLayout {
     }
 
     public void setLoadingState(@LoadingState int loadingState, Runnable onLoading, Runnable onSuccess, Runnable onError, Runnable onEmpty) {
-        setLoadingState(loadingState);
+        this.loadingState = loadingState;
+        delegate.setLoadingState(loadingState);
+        if (onStateChangedListener != null) {
+            onStateChangedListener.onStateChanged(loadingState);
+        }
         switch (loadingState) {
             case LoadingState.LOADING:
                 if (onLoading != null) {
@@ -118,28 +118,40 @@ public class MultiStateView extends FrameLayout {
         }
     }
 
-    public View setContentView(@LayoutRes int layoutResID) {
+    public View setLoadingLayout(@LayoutRes int layoutResID) {
+        removeView(loadingView);
+        loadingView = inflater.inflate(layoutResID, this, false);
+        addView(loadingView);
+        delegate.setLoadingView(loadingView);
+        setLoadingState(loadingState);
+        return loadingView;
+    }
+
+    public View setNormalLayout(@LayoutRes int layoutResID) {
+        removeView(normalView);
         normalView = inflater.inflate(layoutResID, this, false);
         addView(normalView);
-        setNormalView(normalView);
+        delegate.setSuccessView(normalView);
         setLoadingState(loadingState);
         return normalView;
     }
 
-    public void setLoadingView(View loadingView) {
-        delegate.setLoadingView(loadingView);
-    }
-
-    public void setNormalView(View successView) {
-        delegate.setSuccessView(successView);
-    }
-
-    public void setErrorView(View errorView) {
+    public View setErrorLayout(@LayoutRes int layoutResID) {
+        removeView(errorView);
+        errorView = inflater.inflate(layoutResID, this, false);
+        addView(errorView);
         delegate.setErrorView(errorView);
+        setLoadingState(loadingState);
+        return errorView;
     }
 
-    public void setEmptyView(View emptyView) {
+    public View setEmptyLayout(@LayoutRes int layoutResID) {
+        removeView(emptyView);
+        emptyView = inflater.inflate(layoutResID, this, false);
+        addView(emptyView);
         delegate.setEmptyView(emptyView);
+        setLoadingState(loadingState);
+        return emptyView;
     }
 
     public void setErrorViewListener(OnClickListener listener) {

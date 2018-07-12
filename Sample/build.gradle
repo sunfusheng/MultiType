@@ -62,14 +62,12 @@ def generateApk(variant) {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:percent:$rootProject.supportLibraryVersion"
+    api "com.android.support:design:$rootProject.supportLibraryVersion"
+    api "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    api "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    api "com.android.support:percent:$rootProject.supportLibraryVersion"
 
-    implementation 'com.sunfusheng:FirUpdater:1.0.9'
-    implementation 'com.sunfusheng:GlideImageView:2.0.0'
-    implementation project(':MultiType')
-    implementation project(':MultiState')
+    api 'com.sunfusheng:FirUpdater:1.0.9'
+    api 'com.sunfusheng:GlideImageView:2.0.0'
+    api project(':RecyclerViewWrapper')
 }

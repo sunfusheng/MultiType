@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app:com.scwang.smartrefresh.layout.SmartRefreshLayout
+    android:id="@+id/refreshLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srlEnableAutoLoadMore="false"
+    app:srlEnableLoadMore="true">
+
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srlClassicsSpinnerStyle="Translate"
+        app:srlDrawableArrowSize="18dp"
+        app:srlDrawableMarginRight="48dp"
+        app:srlDrawableProgressSize="18dp"
+        app:srlEnableLastTime="false"
+        app:srlTextSizeTitle="15sp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:overScrollMode="never"
+        tools:listitem="@android:layout/simple_list_item_2"/>
+
+    <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srlAccentColor="@color/color_text_first"
+        app:srlDrawableArrowSize="18dp"
+        app:srlDrawableMarginRight="48dp"
+        app:srlDrawableProgressSize="18dp"
+        app:srlTextSizeTitle="15sp"/>
+</app:com.scwang.smartrefresh.layout.SmartRefreshLayout>

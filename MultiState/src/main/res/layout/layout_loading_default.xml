@@ -10,6 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="正在加载，请稍后..."
-        android:textColor="#9d9d9d"
+        android:textColor="#999999"
         android:textSize="15sp"/>
 </RelativeLayout>

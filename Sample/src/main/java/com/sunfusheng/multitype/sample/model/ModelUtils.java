@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class ModelUtils {
 
-    public static List<Object> getData() {
+    public static List<Object> getDataSource() {
         List<Object> items = new ArrayList<>();
 
         items.add(new News("2018俄罗斯世界杯宣传海报",
@@ -84,5 +84,13 @@ public class ModelUtils {
                 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530454180333&di=3f00f17830a8b4a109f2a719e2b50423&imgtype=0&src=http%3A%2F%2Fb3-q.mafengwo.net%2Fs9%2FM00%2F10%2F5C%2FwKgBs1fP7wOAYAc6AAi1cAtmRt462.jpeg"));
 
         return items;
+    }
+
+    public static List<Object> getTestDataSource(int page) {
+        List<Object> list = new ArrayList<>();
+        for (int i = 0; i < 15 * page; i++) {
+            list.add(new News("第" + (i + 1) + "条数据"));
+        }
+        return list;
     }
 }

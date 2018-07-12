@@ -1,1 +1,1 @@
-include ':Sample', ':MultiType', ':MultiState'
+include ':Sample', ':MultiType', ':MultiState', ':RecyclerViewWrapper'
