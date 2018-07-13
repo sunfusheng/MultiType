@@ -20,7 +20,7 @@ RecyclerViewWrapper 这个库结合【MultiType】和【MultiState】并使用�
 
 ## Sample预览图
 
-![](/resources/res.png)
+![](resources/res.png)
 
 #### Gradle配置
 
