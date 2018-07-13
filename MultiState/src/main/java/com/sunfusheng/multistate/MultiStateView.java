@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
-
 /**
  * @author sunfusheng on 2018/7/6.
  */

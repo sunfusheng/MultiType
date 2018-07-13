@@ -86,10 +86,10 @@ public class ModelUtils {
         return items;
     }
 
-    public static List<Object> getTestDataSource(int page) {
+    public static List<Object> getTestDataSource(int page, int pageSize) {
         List<Object> list = new ArrayList<>();
-        for (int i = 0; i < 15 * page; i++) {
-            list.add(new News("第" + (i + 1) + "条数据"));
+        for (int i = page * pageSize; i < page * pageSize + pageSize; i++) {
+            list.add(new News("第" + (i + 1) + "条测试数据"));
         }
         return list;
     }

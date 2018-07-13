@@ -6,6 +6,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,6 @@ import java.util.List;
  * @author sunfusheng on 2018/7/11.
  */
 public class RecyclerViewWrapper extends FrameLayout {
-
     private MultiStateView multiStateView;
     private View loadingView;
     private View normalView;
@@ -36,10 +36,11 @@ public class RecyclerViewWrapper extends FrameLayout {
     private View emptyView;
     private SmartRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
-
     private ClassicsHeader headerView;
 
     private MultiTypeAdapter multiTypeAdapter;
+    private OnRefreshListener onRefreshListener;
+    private OnLoadMoreListener onLoadMoreListener;
 
     private boolean hasRegisterGlobalType;
     private boolean isRefreshing;
@@ -47,7 +48,7 @@ public class RecyclerViewWrapper extends FrameLayout {
 
     static {
         //Header提示
-        ClassicsHeader.REFRESH_HEADER_PULLING = "下拉刷新";
+        ClassicsHeader.REFRESH_HEADER_PULLING = "下拉可以刷新";
         ClassicsHeader.REFRESH_HEADER_REFRESHING = "正在刷新...";
         ClassicsHeader.REFRESH_HEADER_LOADING = "正在加载...";
         ClassicsHeader.REFRESH_HEADER_RELEASE = "释放立即刷新";
@@ -98,6 +99,16 @@ public class RecyclerViewWrapper extends FrameLayout {
         setHeaderBackgroundColor(R.color.color_text_first);
         setHeaderTextColor(R.color.color_text_white);
 
+        View vRetry = errorView.findViewById(R.id.retry);
+        if (vRetry != null) {
+            vRetry.setOnClickListener(v -> {
+                setLoadingState(LoadingState.LOADING);
+                if (onRefreshListener != null) {
+                    onRefreshListener.onRefresh();
+                }
+            });
+        }
+
         refreshLayout.setOnRefreshListener(it -> {
             isRefreshing = it.getState() == RefreshState.Refreshing;
             if (isRefreshing && onRefreshListener != null) {
@@ -131,9 +142,12 @@ public class RecyclerViewWrapper extends FrameLayout {
             multiTypeAdapter.register(MultiTypeRegistry.getInstance());
         }
 
-        multiTypeAdapter.setItems(items, notifyDataSetChanged);
-
-        setLoadingState(LoadingState.SUCCESS);
+        if (items == null || items.size() == 0) {
+            setLoadingState(LoadingState.EMPTY);
+        } else {
+            multiTypeAdapter.setItems(items, notifyDataSetChanged);
+            setLoadingState(LoadingState.SUCCESS);
+        }
 
         if (isRefreshing) {
             isRefreshing = false;
@@ -154,25 +168,8 @@ public class RecyclerViewWrapper extends FrameLayout {
         return multiTypeAdapter.getItems();
     }
 
-
     public void setLoadingState(@LoadingState int loadingState) {
-        setLoadingState(loadingState, null);
-    }
-
-    public void setLoadingState(@LoadingState int loadingState, Runnable onSuccess) {
-        setLoadingState(loadingState, onSuccess, null);
-    }
-
-    public void setLoadingState(@LoadingState int loadingState, Runnable onSuccess, Runnable onError) {
-        setLoadingState(loadingState, onSuccess, onError, null);
-    }
-
-    public void setLoadingState(@LoadingState int loadingState, Runnable onSuccess, Runnable onError, Runnable onEmpty) {
-        setLoadingState(loadingState, null, onSuccess, onError, onEmpty);
-    }
-
-    public void setLoadingState(@LoadingState int loadingState, Runnable onLoading, Runnable onSuccess, Runnable onError, Runnable onEmpty) {
-        multiStateView.setLoadingState(loadingState, onLoading, onSuccess, onError, onEmpty);
+        multiStateView.setLoadingState(loadingState);
     }
 
     public View setLoadingLayout(@LayoutRes int layoutResID) {
@@ -239,9 +236,6 @@ public class RecyclerViewWrapper extends FrameLayout {
         multiTypeAdapter.setOnItemLongClickListener(onItemLongClickListener);
     }
 
-    private OnRefreshListener onRefreshListener;
-    private OnLoadMoreListener onLoadMoreListener;
-
     public void setOnRefreshListener(OnRefreshListener onRefreshListener) {
         this.onRefreshListener = onRefreshListener;
     }
@@ -266,6 +260,22 @@ public class RecyclerViewWrapper extends FrameLayout {
         if (headerView != null) {
             headerView.setAccentColor(getContext().getResources().getColor(resId));
         }
+    }
+
+    public void enableRefresh(boolean enabled) {
+        refreshLayout.setEnableRefresh(enabled);
+    }
+
+    public void enableLoadMore(boolean enabled) {
+        refreshLayout.setEnableLoadMore(enabled);
+    }
+
+    public void setRefreshSuccessTip(String tip) {
+        ClassicsHeader.REFRESH_HEADER_FINISH = TextUtils.isEmpty(tip) ? "刷新成功" : tip;
+    }
+
+    public void setLoadMoreSuccessTip(String tip) {
+        ClassicsFooter.REFRESH_FOOTER_FINISH = TextUtils.isEmpty(tip) ? "加载成功" : tip;
     }
 
     public void setRefreshError() {
