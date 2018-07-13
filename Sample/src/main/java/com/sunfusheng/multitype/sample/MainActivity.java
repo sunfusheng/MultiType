@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements
             if (new Random().nextInt(5) == 0) {
                 recyclerViewWrapper.setLoadingState(LoadingState.ERROR);
             } else {
-                recyclerViewWrapper.setItems(ModelUtils.getDataSource());
+                items = ModelUtils.getDataSource();
+                recyclerViewWrapper.setItems(items);
             }
         }, 1500);
     }

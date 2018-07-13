@@ -83,6 +83,10 @@ public class ModelUtils {
                 "45.8MB",
                 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530454180333&di=3f00f17830a8b4a109f2a719e2b50423&imgtype=0&src=http%3A%2F%2Fb3-q.mafengwo.net%2Fs9%2FM00%2F10%2F5C%2FwKgBs1fP7wOAYAc6AAi1cAtmRt462.jpeg"));
 
+        items.add(new Video("中国宣传片",
+                "1.8G",
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530454015736&di=be3f8215420c6f32be1eb0ea3aed9c1a&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fe824b899a9014c083545a438007b02087bf4f435.jpg"));
+
         return items;
     }
 
