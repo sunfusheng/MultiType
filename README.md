@@ -20,7 +20,7 @@ RecyclerViewWrapper 这个库结合【MultiType】和【MultiState】并使用�
 
 ## Sample预览图
 
-<img src="/resources/res.png">
+![](/resources/res.png)
 
 #### Gradle配置
 
@@ -36,6 +36,13 @@ RecyclerViewWrapper 这个库结合【MultiType】和【MultiState】并使用�
     // 如果不想用库里版本的RecyclerView，可这样配置
     api 'com.sunfusheng:RecyclerViewWrapper:<latest-version>', {
         exclude group: 'com.android.support'
+    }
+    
+    // 如果同步不下来库的话，在工程下的 build.gradle 添加：
+    allprojects {
+        repositories {
+            maven { url 'https://dl.bintray.com/sfsheng0322/maven' }
+        }
     }
 
 ## MultiType的使用
