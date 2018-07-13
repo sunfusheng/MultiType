@@ -14,6 +14,10 @@
 
 MultiState 这个库为了管理请求数据的加载中、加载成功、加载失败、数据为空的情况，与MultiType配合使用更合适。
 
+# RecyclerViewWrapper [ ![Download](https://api.bintray.com/packages/sfsheng0322/maven/RecyclerViewWrapper/images/download.svg) ](https://bintray.com/sfsheng0322/maven/RecyclerViewWrapper/_latestVersion)
+
+RecyclerViewWrapper 这个库结合【MultiType】和【MultiState】并使用[SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)库简单封装了下拉刷新、上拉加载更多等相关功能。
+
 ## Sample预览图
 
 <img src="/resources/res1.png">
@@ -23,13 +27,16 @@ MultiState 这个库为了管理请求数据的加载中、加载成功、加载
     // MultiType
     api 'com.sunfusheng:MultiType:<latest-version>'
     
-    // 如果不想用库里版本的RecyclerView，可这样配置
-    api 'com.sunfusheng:MultiType:<latest-version>', {
-        exclude group: 'com.android.support'
-    }
-    
     // MultiState
     api 'com.sunfusheng:MultiState:<latest-version>'
+    
+    // RecyclerViewWrapper
+    compile 'com.sunfusheng:RecyclerViewWrapper:<latest-version>'
+    
+    // 如果不想用库里版本的RecyclerView，可这样配置
+    api 'com.sunfusheng:RecyclerViewWrapper:<latest-version>', {
+        exclude group: 'com.android.support'
+    }
 
 ## MultiType的使用
 
