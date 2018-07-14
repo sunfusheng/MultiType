@@ -19,7 +19,6 @@ public class MultiType<T, K> {
         this.keyGenerator = keyGenerator;
     }
 
-    @NonNull
     public ItemViewBinder<?, ?> getViewBinder(@NonNull Object model) {
         try {
             T concreteModel = (T) model;
@@ -37,17 +36,16 @@ public class MultiType<T, K> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        throw new BinderNotFoundException(model.getClass());
+        return null;
     }
 
-    @NonNull
     public ItemViewBinder<?, ?> getViewBinderByHashCode(int hashCode, @NonNull Class<? extends T> clazz) {
         for (ItemViewBinder binder : binderMap.values()) {
             if (hashCode == binder.hashCode()) {
                 return binder;
             }
         }
-        throw new BinderNotFoundException(clazz);
+        return null;
     }
 
     public void register(K key, @NonNull ItemViewBinder<?, ?> binder) {

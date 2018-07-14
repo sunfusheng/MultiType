@@ -1,4 +1,4 @@
-package com.sunfusheng;
+package com.sunfusheng.wrapper;
 
 import android.content.Context;
 import android.support.annotation.ColorRes;
@@ -37,6 +37,7 @@ public class RecyclerViewWrapper extends FrameLayout {
     private SmartRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
     private ClassicsHeader headerView;
+    private ClassicsFooter footerView;
 
     private MultiTypeAdapter multiTypeAdapter;
     private OnRefreshListener onRefreshListener;
@@ -52,7 +53,7 @@ public class RecyclerViewWrapper extends FrameLayout {
         ClassicsHeader.REFRESH_HEADER_REFRESHING = "正在刷新...";
         ClassicsHeader.REFRESH_HEADER_LOADING = "正在加载...";
         ClassicsHeader.REFRESH_HEADER_RELEASE = "释放立即刷新";
-        ClassicsHeader.REFRESH_HEADER_FINISH = "刷新成功";
+        ClassicsHeader.REFRESH_HEADER_FINISH = "正在刷新...";//"刷新成功";
         ClassicsHeader.REFRESH_HEADER_FAILED = "刷新失败，请重试";
 
         //Footer提示
@@ -60,7 +61,7 @@ public class RecyclerViewWrapper extends FrameLayout {
         ClassicsFooter.REFRESH_FOOTER_RELEASE = "释放立即加载";
         ClassicsFooter.REFRESH_FOOTER_LOADING = "正在加载...";
         ClassicsFooter.REFRESH_FOOTER_REFRESHING = "正在刷新...";
-        ClassicsFooter.REFRESH_FOOTER_FINISH = "加载成功";
+        ClassicsFooter.REFRESH_FOOTER_FINISH = "正在加载...";//"加载成功";
         ClassicsFooter.REFRESH_FOOTER_FAILED = "加载失败，请重试";
         ClassicsFooter.REFRESH_FOOTER_NOTHING = "没有更多数据了";
     }
@@ -96,6 +97,9 @@ public class RecyclerViewWrapper extends FrameLayout {
         refreshLayout.setEnableAutoLoadMore(true);
 
         headerView = (ClassicsHeader) refreshLayout.getRefreshHeader();
+        footerView = (ClassicsFooter) refreshLayout.getRefreshFooter();
+        headerView.setFinishDuration(0);
+        footerView.setFinishDuration(0);
         setHeaderBackgroundColor(R.color.color_text_first);
         setHeaderTextColor(R.color.color_text_white);
 

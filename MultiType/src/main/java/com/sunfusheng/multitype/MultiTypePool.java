@@ -39,14 +39,20 @@ public class MultiTypePool {
 
     @NonNull
     public ItemViewBinder<?, ?> getViewBinder(@NonNull Object model) {
+        ItemViewBinder<?, ?> binder;
         MultiType multiType = typeMap.get(model.getClass());
-        if (multiType == null) {
-            if (defaultBinder != null) {
-                return defaultBinder;
+        if (multiType != null) {
+            binder = multiType.getViewBinder(model);
+            if (binder != null) {
+                return binder;
             }
-            return typeMap.get(DefaultBinderClass.class).getViewBinder(model);
         }
-        return multiType.getViewBinder(model);
+
+        binder = getDefaultViewBinder(model);
+        if (binder != null) {
+            return binder;
+        }
+        throw new BinderNotFoundException(model.getClass());
     }
 
     @NonNull
@@ -58,6 +64,13 @@ public class MultiTypePool {
         if (typeMap.size() > 0) {
             this.typeMap.putAll(typeMap);
         }
+    }
+
+    public ItemViewBinder<?, ?> getDefaultViewBinder(@NonNull Object model) {
+        if (defaultBinder != null) {
+            return defaultBinder;
+        }
+        return typeMap.get(DefaultBinderClass.class).getViewBinder(model);
     }
 
     public ItemViewBinder<?, ?> getDefaultBinder() {

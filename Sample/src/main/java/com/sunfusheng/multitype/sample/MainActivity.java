@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.sunfusheng.FirUpdater;
 import com.sunfusheng.FirUpdaterUtils;
-import com.sunfusheng.RecyclerViewWrapper;
 import com.sunfusheng.multistate.LoadingState;
 import com.sunfusheng.multitype.MultiTypeAdapter;
 import com.sunfusheng.multitype.MultiTypeRegistry;
@@ -23,6 +22,7 @@ import com.sunfusheng.multitype.sample.viewbinder.RightImageBinder;
 import com.sunfusheng.multitype.sample.viewbinder.TextBinder;
 import com.sunfusheng.multitype.sample.viewbinder.ThreeImagesBinder;
 import com.sunfusheng.multitype.sample.viewbinder.VideoBinder;
+import com.sunfusheng.wrapper.RecyclerViewWrapper;
 
 import java.util.List;
 import java.util.Random;
@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements
         mainHandler.postDelayed(() -> {
             page = -1;
             items = ModelUtils.getDataSource();
-            recyclerViewWrapper.setRefreshSuccessTip("更新" + items.size() + "条数据");
             recyclerViewWrapper.setItems(items);
         }, 1500);
     }
@@ -110,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements
                 recyclerViewWrapper.setLoadMoreEmpty();
             } else {
                 items.addAll(ModelUtils.getTestDataSource(page, 15));
-                recyclerViewWrapper.setLoadMoreSuccessTip("新增15条数据");
                 recyclerViewWrapper.setItems(items);
             }
         }, 1500);
