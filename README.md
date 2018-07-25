@@ -131,7 +131,7 @@ multiTypeAdapter.notifyDataSetChanged();
 
 ### 关于我
 
-[GitHub: sfsheng0322](https://github.com/sfsheng0322)  
+[GitHub: sunfusheng](https://github.com/sunfusheng)  
 
 [个人邮箱: sfsheng0322@126.com](https://mail.126.com/)
   
