@@ -41,5 +41,5 @@ publish {
     artifactId = 'RecyclerViewWrapper'
     publishVersion = rootProject.versionName
     desc = 'RecyclerViewWrapper is a list library which manage pull to refresh and load more.'
-    website = 'https://github.com/sfsheng0322/MultiType'
+    website = 'https://github.com/sunfusheng/MultiType'
 }
