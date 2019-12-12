@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.sunfusheng.FirUpdater;
-import com.sunfusheng.FirUpdaterUtils;
+import com.sunfusheng.UpdaterUtil;
 import com.sunfusheng.multistate.LoadingState;
 import com.sunfusheng.multitype.MultiTypeAdapter;
 import com.sunfusheng.multitype.MultiTypeRegistry;
@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void init() {
-        setTitle(getString(R.string.app_name_with_version, FirUpdaterUtils.getVersionName(this)));
+        setTitle(getString(R.string.app_name_with_version, UpdaterUtil.getVersionName(this)));
 
-        new FirUpdater(this)
+        FirUpdater.getInstance(this)
                 .apiToken("3c57fb226edf7facf821501e4eba08d2")
                 .appId("5b3ec988548b7a3d7bd77c8f")
                 .checkVersion();

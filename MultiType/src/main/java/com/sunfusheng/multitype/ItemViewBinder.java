@@ -26,9 +26,12 @@ public abstract class ItemViewBinder<T, VH extends ViewHolder> {
         return RecyclerView.NO_ID;
     }
 
-    protected void onViewAttachedToWindow(@NonNull VH holder) { }
+    protected void onViewAttachedToWindow(@NonNull VH holder) {
+    }
 
-    protected void onViewDetachedFromWindow(@NonNull VH holder) { }
+    protected void onViewDetachedFromWindow(@NonNull VH holder) {
+    }
 
-    protected void onViewRecycled(@NonNull VH holder) { }
+    protected void onViewRecycled(@NonNull VH holder) {
+    }
 }
