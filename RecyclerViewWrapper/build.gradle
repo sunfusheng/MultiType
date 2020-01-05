@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
     api project(':MultiType')
     api project(':MultiState')
 }
