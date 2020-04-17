@@ -111,15 +111,15 @@ public class LoadingView extends View {
         int width = mSize / 12, height = mSize / 6;
         mPaint.setStrokeWidth(width);
 
-        canvas.rotate(rotateDegrees, mSize / 2, mSize / 2);
-        canvas.translate(mSize / 2, mSize / 2);
+        canvas.rotate(rotateDegrees, mSize / 2f, mSize / 2f);
+        canvas.translate(mSize / 2f, mSize / 2f);
 
         for (int i = 0; i < LINE_COUNT; i++) {
             canvas.rotate(DEGREE_PER_LINE);
             mPaint.setAlpha((int) (255f * (i + 1) / LINE_COUNT));
-            canvas.translate(0, -mSize / 2 + width / 2);
+            canvas.translate(0, -mSize / 2f + width / 2f);
             canvas.drawLine(0, 0, 0, height, mPaint);
-            canvas.translate(0, mSize / 2 - width / 2);
+            canvas.translate(0, mSize / 2f - width / 2f);
         }
     }
 
@@ -149,5 +149,4 @@ public class LoadingView extends View {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
-
 }
